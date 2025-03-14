@@ -10,7 +10,7 @@ const PostManagement = () => {
 
   const fetchPosts = useCallback(async () => {
     try {
-      const response = await axios.get('http://localhost:2626/api');
+      const response = await axios.get('https://test-project-be-production.up.railway.app/api');
       setPosts(response.data);
     } catch (error) {
       console.log(error)
@@ -38,10 +38,10 @@ const PostManagement = () => {
     e.preventDefault();
     try {
       if (editMode) {
-        await axios.put(`http://localhost:2626/api/${postData.id}`, postData);
+        await axios.put(`https://test-project-be-production.up.railway.app/api/${postData.id}`, postData);
         showNotification('Post updated successfully!', 'success');
       } else {
-        await axios.post('http://localhost:2626/api', { ...postData });
+        await axios.post('https://test-project-be-production.up.railway.app/api', { ...postData });
         showNotification('Post created successfully!', 'success');
       }
       handleModalClose();
@@ -55,7 +55,7 @@ const PostManagement = () => {
   const deletePost = async (id) => {
     if (window.confirm('Are you sure you want to delete this post?')) {
       try {
-        await axios.delete(`http://localhost:2626/api/${id}`);
+        await axios.delete(`https://test-project-be-production.up.railway.app/api/${id}`);
         showNotification('Post deleted successfully!', 'success');
         fetchPosts();
       } catch (error) {
@@ -67,7 +67,7 @@ const PostManagement = () => {
 
   const publishPost = async (id) => {
     try {
-      await axios.put(`http://localhost:2626/api/${id}`, { status: 'PUBLISHED' });
+      await axios.put(`https://test-project-be-production.up.railway.app/api/${id}`, { status: 'PUBLISHED' });
       showNotification('Post published successfully!', 'success');
       fetchPosts();
     } catch (error) {
